@@ -1,0 +1,110 @@
+<h1>Carrinho de {{name}}</h1>
+<p class="email-cart">E-mail: {{email}}</p>
+<br>
+<p class="nao-aparecer" id="dataPort" data-port="{{port}}">Porta: {{port}}</p>
+
+{{#if products.length}}
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Descrição</th>
+    <th>Preço (R$)</th>
+    <th>Quantidade</th>
+    <th>Reduzir quantidade</th>
+  </tr>
+  {{#each products}}
+  <tr>
+    <th>
+      <button class="image-product" data-id="{{_id}}">
+        <img class="image-cart" src="../../image/{{thumbnail}}" alt="Imagem do Produto" />
+      </button>
+    </th>
+    <th class="description-product" data-id="{{_id}}">{{description}}</th>
+    <th class="price-product" data-id="{{_id}}">{{price}},00</th>
+    <th class="qty-product" data-id="{{_id}}">{{qty}}</th>
+    <th>
+      <button class="decrease-button" data-id="{{_id}}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+          <path
+            d="M176,128a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm56,0A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z">
+          </path>
+        </svg>
+      </button>
+    </th>
+  </tr>
+  {{/each}}
+</table>
+<button class="btn-end">
+  Finalizar compra
+</button>
+{{else}}
+<div>
+  <h3>Você ainda não adicionou produtos no carrinho</h3>
+  <a href="/products/all/1/10" class="headertitles">Ver produtos</a>
+</div>
+{{/if}}
+
+<script>
+  const div1 = document.getElementById("dataPort")
+  const port = div1.getAttribute("data-port")
+  const seeButtons = document.querySelectorAll(".image-product")
+  const decreaseButtons = document.querySelectorAll(".decrease-button")
+
+  seeButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const productId = button.getAttribute('data-id')
+      window.location.href = `/products/${productId}`
+    })
+  })
+
+  decreaseButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const productId = button.getAttribute('data-id')
+      const updatedCart = await decreaseProduct(productId)
+      updateCartDisplay(updatedCart)
+    })
+  })
+
+  async function decreaseProduct(_id) {
+    const response = await fetch(`/cart/remove/${_id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      return data.products
+    } else {
+      alert("Erro ao atualizar o carrinho")
+    }
+  }
+
+  function updateCartDisplay(products) {
+    const tableBody = document.querySelector("table tbody")
+    tableBody.innerHTML = ''
+
+    products.forEach(product => {
+      const row = document.createElement("tr")
+
+      row.innerHTML = `
+      <th>
+        <button class="image-product" data-id="${product._id}">
+          <img class="image-cart" src="../../image/${product.thumbnail}" alt="Imagem do Produto" />
+        </button>
+      </th>
+      <th class="description-product" data-id="${product._id}">${product.description}</th>
+      <th class="price-product" data-id="${product._id}">${product.price},00</th>
+      <th class="qty-product" data-id="${product._id}">${product.qty}</th>
+      <th>
+        <button class="decrease-button" data-id="${product._id}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+            <path d="M176,128a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm56,0A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+          </svg>
+        </button>
+      </th>
+    `
+
+      tableBody.appendChild(row)
+    })
+  }
+</script>

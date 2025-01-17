@@ -1,0 +1,73 @@
+paths:
+  /cart:
+    get:
+      summary: Mostra os itens do carrinho de compras.
+      tags:
+        - Carrinho de compras - visualização
+      responses:
+        '200':
+            description: Carrinho retornado do banco de dados com sucesso.
+            content:
+              text/html:
+                schema:
+                  type: string
+                  description: HTML renderizado com a lista de produtos do carrinho de compras.
+        '403':
+            description: Permissão negada. Faça login como "user" para ter acesso.
+        '500':
+            description: Erro interno do servidor.
+    post:
+      summary: Acrescenta um item ao carrinho de compras.
+      tags:
+        - Carrinho de compras - adicionar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pid:
+                  type: string
+                  description: ID do produto que será adicionado ao carrinho
+              example: {"pid": "66e0d95fc4140a9675024c18"}
+      responses:
+        '200':
+            description: Produto adicionado ao carrinho de compras com sucesso.
+        '403':
+            description: Permissão negada. Faça login como "user" para ter acesso.
+        '500':
+            description: Erro interno do servidor.
+  /cart/remove/{pid}:
+    put:
+      summary: Atualiza o carrinho de compras removendo uma quantidade do produto.
+      tags:
+        - Carrinho de compras - remover
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID do produto que deseja excluir 1 quantidade.
+      responses:
+        '200':
+            description: Carrinho atualizado com sucesso.
+        '403':
+            description: Permissão negada. Faça login como "user" para ter acesso.
+        '500':
+            description: Erro interno do servidor.
+components:
+  schemas:
+    cart:
+      type: array
+      items:
+        type: object
+        properties:
+          _id:
+            type: objectId
+            description: ID do produto
+          qty:
+            type: integer
+            description: Quantidade do produto
+        example:
+          _id: 66e0d95fc4140a9675024c17
+          qty: 3

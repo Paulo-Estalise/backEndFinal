@@ -1,0 +1,50 @@
+<div>
+  <h1>Ecommerce - PH</h1>
+</div>
+
+<h1>Login</h1>
+
+<div class="container-login-register">
+  <div class="login">
+    <h2>Você já possui uma conta?</h2>
+    <form action="/user/login" method="post">
+      <label for="emailAccount">E-mail:</label>
+      <input type="email" id="emailAccount" name="email" placeholder="Digite seu e-mail" required>
+      <br>
+      <label for="passwordAccount">Senha:</label>
+      <input type="password" id="passwordAccount" name="password" placeholder="Digite sua senha" required>
+      <br>
+      <button type="submit">Entrar</button>
+    </form>
+    <br>
+
+    <div class="login-github">
+      <h2>Entrar com sua conta do GitHub</h2>
+      <a href="/api/sessions/github">
+        <button>Entrar com GitHub</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="register">
+    <h2>Deseja cadastrar uma conta?</h2>
+    <form action="/user" method="post">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+      <br>
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+      <br>
+      <label for="password">Crie uma senha:</label>
+      <input type="password" id="password" name="password" placeholder="Crie uma senha" required>
+      <br>
+      <label for="role">Função:</label>
+      <select id="role" name="role">
+        <option value="user">Usuário</option>
+        <option value="admin">Administrador</option>
+      </select>
+      <br>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+</div>

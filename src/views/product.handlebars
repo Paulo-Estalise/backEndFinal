@@ -1,0 +1,61 @@
+<h1 class="product-name">{{title}}</h1>
+
+<div>
+    <img src="../../image/{{thumbnail}}" alt="Imagem do Produto" width="150px" />
+    <p><strong>Categoria:</strong> {{category}}</p>
+    <p><strong>Descrição:</strong> {{description}}</p>
+    <p><strong>Preço:</strong> R$ {{price}},00</p>
+    <p><strong>Estoque:</strong> {{stock}} unidades disponíveis</p>
+    <p><strong>Código:</strong> {{code}}</p>
+    <br>
+    {{#if isUser}}
+    <button id="addToCart" class="addToCart" data-id="{{_id}}">Adicionar ao carrinho</button>
+    {{else}}
+    <p>Faça login como "usuário" para adicionar este produto ao seu carrinho.</p>
+    <button class="goToLogin">Ir para Login</button>
+    {{/if}}
+</div>
+
+<script>
+    const goToLogin = document.querySelectorAll('.goToLogin');
+    const addCart = document.querySelectorAll('.addToCart');
+
+    goToLogin.forEach(button => {
+        button.addEventListener('click', async () => {
+            window.location.href = `/`;
+        });
+    });
+
+    addCart.forEach(button => {
+        button.addEventListener('click', async () => {
+            const productId = button.getAttribute('data-id');
+            swal({
+                text: "Produto adicionado ao carrinho!",
+                icon: "success",
+            });
+            await addProduct(productId);
+        });
+    });
+
+    async function addProduct(_id) {
+        try {
+            const response = await fetch('/cart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pid: _id })
+            });
+
+            if (!response.ok) {
+                throw new Error('Falha ao adicionar o produto ao carrinho');
+            }
+            const data = await response.json();
+            console.log('Resposta do servidor:', data);
+        } catch (error) {
+            swal({
+                text: "Erro ao adicionar o produto ao carrinho.",
+                icon: "error",
+            });
+            console.error('Erro:', error);
+        }
+    }
+</script>

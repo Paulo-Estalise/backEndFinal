@@ -1,0 +1,123 @@
+[
+    {
+        "id": 0,
+        "title": "Bola de Basquete",
+        "description": "Bola oficial de basquete, tamanho 7, de couro sintético.",
+        "price": 129.99,
+        "thumbnail": "basketball.jpg",
+        "code": 101,
+        "stock": 15,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 1,
+        "title": "Camiseta de Futebol",
+        "description": "Camiseta oficial de time, modelo 2025, material dry-fit.",
+        "price": 89.99,
+        "thumbnail": "football-shirt.jpg",
+        "code": 102,
+        "stock": 30,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 2,
+        "title": "Chuteira de Futebol",
+        "description": "Chuteira para gramado, com travas removíveis e ajuste perfeito.",
+        "price": 199.99,
+        "thumbnail": "football-shoes.jpg",
+        "code": 103,
+        "stock": 20,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 3,
+        "title": "Short de Basquete",
+        "description": "Short leve, ideal para jogos e treinos.",
+        "price": 59.99,
+        "thumbnail": "basketball-shorts.jpg",
+        "code": 104,
+        "stock": 25,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 4,
+        "title": "Caneleira de Futebol",
+        "description": "Caneleira de alta proteção, com ajuste confortável.",
+        "price": 34.99,
+        "thumbnail": "shin-guard.jpg",
+        "code": 105,
+        "stock": 50,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 5,
+        "title": "Meia de Basquete",
+        "description": "Meias longas, acolchoadas para conforto extra.",
+        "price": 19.99,
+        "thumbnail": "basketball-socks.jpg",
+        "code": 106,
+        "stock": 40,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 6,
+        "title": "Luva de Goleiro",
+        "description": "Luva profissional para goleiros, com proteção reforçada.",
+        "price": 79.99,
+        "thumbnail": "goalkeeper-gloves.jpg",
+        "code": 107,
+        "stock": 12,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 7,
+        "title": "Regata de Basquete",
+        "description": "Regata oficial de time, leve e respirável.",
+        "price": 99.99,
+        "thumbnail": "basketball-jersey.jpg",
+        "code": 108,
+        "stock": 22,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 8,
+        "title": "Bola de Futebol",
+        "description": "Bola oficial de futebol, aprovada pela FIFA.",
+        "price": 129.99,
+        "thumbnail": "football.jpg",
+        "code": 109,
+        "stock": 18,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 9,
+        "title": "Agasalho de Futebol",
+        "description": "Agasalho para treino, ideal para climas frios.",
+        "price": 149.99,
+        "thumbnail": "football-tracksuit.jpg",
+        "code": 110,
+        "stock": 10,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 10,
+        "title": "Tênis de Basquete",
+        "description": "Tênis para quadra indoor, com excelente amortecimento.",
+        "price": 249.99,
+        "thumbnail": "basketball-shoes.jpg",
+        "code": 111,
+        "stock": 8,
+        "status": true,
+        "category": "basquete"
+    }
+]

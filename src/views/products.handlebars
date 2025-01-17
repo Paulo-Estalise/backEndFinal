@@ -1,0 +1,82 @@
+<h1>Lista de Produtos</h1>
+
+<div class="search-container">
+  <input type="text" id="search" placeholder="Qual produto deseja encontrar?">
+  <button id="searchButton">Buscar</button>
+</div>
+
+<h3 class="nao-aparecer" id="dataPort" data-port="{{port}}">Porta {{port}}</h3>
+
+<div class="page-products">
+  {{#each products}}
+  <div class="container-product">
+    <p><strong>Categoria:</strong> {{category}}</p>
+    <img src="http://localhost:8080/image/{{thumbnail}}" alt="Imagem do Produto" width="100px" />
+    <p class="product-name"><strong>{{title}}</strong></p>
+    <p><strong>Preço:</strong> R$ {{price}},00</p>
+    <br>
+    <button class="viewProduct" data-id="{{_id}}">Ver produto</button>
+  </div>
+  {{/each}}
+
+  <div class="numeracao-pagina">
+    <p class="nao-aparecer">{{result.hasNextPage}}</p>
+    <button id="previousButton" {{#unless result.hasPrevPage}}disabled{{/unless}}>Anterior</button>
+    <p>Página {{result.page}}</p>
+    <button id="nextButton" {{#unless result.hasNextPage}}disabled{{/unless}}>Próxima</button>
+  </div>
+</div>
+
+<script>
+  const div1 = document.getElementById("dataPort");
+  const port = div1.getAttribute("data-port");
+  const searchInput = document.getElementById('search');
+  const searchButton = document.getElementById('searchButton');
+  const viewProducts = document.querySelectorAll('.viewProduct');
+  const previousButton = document.getElementById('previousButton');
+  const nextButton = document.getElementById('nextButton');
+
+  // Função para buscar produtos
+  searchButton.addEventListener('click', () => {
+    const searchQuery = searchInput.value.trim();
+    if (searchQuery) {
+      window.location.href = `/products/${encodeURIComponent(searchQuery)}/1/10`;
+    }
+  });
+
+  // Função para visualizar detalhes do produto
+  viewProducts.forEach(button => {
+    button.addEventListener('click', async () => {
+      const productId = button.getAttribute('data-id');
+      window.location.href = `/products/${productId}`;
+    });
+  });
+
+  // Função para redirecionar para a próxima página
+  nextButton.addEventListener('click', () => {
+    const searchQuery = window.location.pathname.split('/')[2];
+    const nextPage = {{ result.nextPage }};
+    const limit = {{ result.limit }};
+    const url = `http://localhost:${port}/products/${encodeURIComponent(searchQuery)}/${nextPage}/${limit}`;
+    window.location.href = url;
+  });
+
+  // Função para redirecionar para a página anterior
+  previousButton.addEventListener('click', () => {
+    const searchQuery = window.location.pathname.split('/')[2];
+    const prevPage = {{ result.prevPage }};
+    const limit = {{ result.limit }};
+    const url = `http://localhost:${port}/products/${encodeURIComponent(searchQuery)}/${prevPage}/${limit}`;
+    window.location.href = url;
+  });
+
+  window.onload = function () {
+    const hasRedirected = sessionStorage.getItem('hasRedirected');
+
+    if (!hasRedirected) {
+      const url = `http://localhost:${port}/products/all/1/10`;
+      sessionStorage.setItem('hasRedirected', 'true');
+      window.location.href = url;
+    }
+  };
+</script>

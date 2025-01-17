@@ -1,0 +1,176 @@
+paths:
+  /products/all/{page}/10:
+    get:
+      summary: Mostra 10 produtos por página.
+      tags:
+        - Produtos - visualização
+      parameters:
+        - name: page
+          in: path
+          required: true
+          description: Número da página
+          schema:
+            type: number
+      responses:
+        '200':
+            description: Produtos retornados do banco de dados com sucesso.
+            content:
+              text/html:
+                schema:
+                  type: string
+                  description: HTML renderizado com a lista de 10 produtos por página.
+        '500':
+            description: Erro interno do servidor, geralmente ocorrido por uma query errada ou falha de conexão com banco de dados.
+  /products/{pid}:
+    get:
+      summary: Encontra o produto pelo seu id.
+      tags:
+        - Produto - visualização
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID do produto que deseja visualizar
+      responses:
+        '200':
+            description: Produto encontrado no banco de dados.
+            content:
+              text/html:
+                schema:
+                  type: string
+                  description: HTML renderizado com o produto solicitado.
+        '500':
+            description: Erro interno do servidor, geralmente ocorrido por uma query errada ou falha de conexão com banco de dados.
+    delete:
+      summary: Deleta um produto pelo seu id.
+      tags:
+        - Produto - deletar
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID do produto
+      responses:
+        '200':
+            description: Produto deletado do banco de dados.
+        '401':
+            description: Usuário não autorizado para deletar produtos.
+        '500':
+            description: Erro interno do servidor.
+    put:
+      summary: Atualiza um produto pelo seu id.
+      tags:
+        - Produto - atualização
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID do produto
+          schema:
+              type: string
+      requestBody:
+        require: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+      responses:
+        '200':
+            description: Produto atualizado no banco de dados.
+        '401':
+            description: Usuário não autorizado para atualizar produtos.
+        '500':
+            description: Erro interno do servidor.
+  /products:
+    post:
+      summary: Cadastra um novo produto.
+      tags:
+        - Produto - cadastro
+      requestBody:
+        require: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+      responses:
+        '200':
+            description: Novo produto cadastrado no banco de dados.
+        '401':
+            description: Usuário não autorizado para cadastrar produtos.
+        '500':
+            description: Erro interno do servidor.
+
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nome do produto
+        category:
+          type: string
+          description: Enquadra o produto em uma categoria
+        description:
+          type: string
+          description: Descrição do produto
+        price:
+          type: number
+          description: Valor do produto em reais
+        code:
+          type: number
+          description: Código do produto
+        thumbnail:
+          type: string
+          description: Nome do arquivo em .png        
+        stock:
+          type: number
+          description: Quantidade do produto em estoque
+        status:
+          type: string
+          description: Informa se o produto está disponível ou não (true/false)        
+      example:
+        title: Bola de Futebol
+        category: Futebol
+        description: Bola de futebol oficial, modelo para jogos profissionais, em couro sintético.
+        price: 150
+        thumbnail: bola_futebol.png
+        code: 101
+        stock: 50
+        status: true
+    product_basketball:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nome do produto
+        category:
+          type: string
+          description: Categoria do produto
+        description:
+          type: string
+          description: Descrição do produto
+        price:
+          type: number
+          description: Valor do produto em reais
+        code:
+          type: number
+          description: Código do produto
+        thumbnail:
+          type: string
+          description: Nome do arquivo de imagem (.png)
+        stock:
+          type: number
+          description: Quantidade do produto em estoque
+        status:
+          type: string
+          description: Indica se o produto está disponível para venda (true/false)
+      example:
+        title: Bola de Basquetebol
+        category: Basquete
+        description: Bola oficial de basquete, tamanho 7, feita para jogos de alta performance.
+        price: 180
+        thumbnail: bola_basquete.png
+        code: 202
+        stock: 30
+        status: true

@@ -1,0 +1,57 @@
+<h1>Correspondência</h1>
+<div class="container-register-edit">
+    <div class="register-product">
+        <h2>Enviar E-mail</h2>
+        <form action="/mail" method="post">
+            <label for="to">Para:</label>
+            <input type="email" id="to" name="to" placeholder="Digite o e-mail do destinatário" required>
+            <br>
+            <label for="subject">Título:</label>
+            <input type="text" id="subject" name="subject" placeholder="Digite o título do e-mail" required>
+            <br>
+            <label for="html">Mensagem:</label>
+            <br>
+            <textarea for="text" id="text" name="text" placeholder="Digite sua mensagem" required cols="30" rows="5"></textarea>
+            <br>
+            <label for="file">Anexo:</label>
+            <br>
+            <input for="file" type="file" name="file">
+            <br>
+            <button id="sweet" type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <div class="edit-product">
+        <h2>Enviar WhatsApp</h2>
+        <form action="/mail/whats" method="post">
+            <label for="to">Para:</label>
+            <input type="text" id="to" name="to" placeholder="Digite o número do WhatsApp" required>
+            <br>
+            <label for="text">Mensagem:</label>
+            <br>
+            <textarea for="text" id="text" name="text" cols="30" rows="5" placeholder="Digite sua mensagem"></textarea>
+            <br>
+            <button id="whats" type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("sweet")
+        .addEventListener("click", async () => {
+            await swal({
+                text: "Seu e-mail foi enviado com sucesso!",
+                icon: "success",
+            });
+            window.location.href = `/products/all/1/10`;
+        });
+
+    document.getElementById("whats")
+        .addEventListener("click", async () => {
+            await swal({
+                text: "Sua mensagem foi enviada com sucesso!",
+                icon: "success",
+            });
+            window.location.href = `/products/all/1/10`;
+        });
+</script>

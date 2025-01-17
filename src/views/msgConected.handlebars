@@ -1,0 +1,24 @@
+<div>
+  <h2>Bem-vindo(a), {{name}}! Você está conectado(a).</h2>
+  <h3>Você será redirecionado(a) para a página de produtos em:</h3>
+  <h3 class="nao-aparecer" id="dataPort" data-port="{{port}}">Porta {{port}}</h3>
+  <h3 id="countRedrct">3</h3>
+</div>
+
+<script>
+  let div1 = document.getElementById("dataPort");
+  let port = div1.getAttribute("data-port");
+
+  let countInit = 3;
+  const countElement = document.getElementById("countRedrct");
+
+  const interval = setInterval(function () {
+    countInit--;
+    countElement.innerHTML = countInit;
+
+    if (countInit <= 0) {
+      clearInterval(interval); 
+      window.location.href = `http://localhost:${port}/products/all/1/10`;
+    }
+  }, 1000);
+</script>

@@ -1,0 +1,123 @@
+[
+    {
+        "id": 0,
+        "title": "bola de futebol",
+        "description": "Bola de futebol oficial, tamanho 5",
+        "price": 54,
+        "thumbnail": "image0.jpg",
+        "code": 21,
+        "stock": 11,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 1,
+        "title": "camisa de basquete",
+        "description": "Camisa de basquete oficial, tamanho M",
+        "price": 87.58,
+        "thumbnail": "image1.jpg",
+        "code": 71,
+        "stock": 8,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 2,
+        "title": "short de futebol",
+        "description": "Short de futebol em tecido leve e respirável",
+        "price": 102.45,
+        "thumbnail": "image2.jpg",
+        "code": 12,
+        "stock": 18,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 3,
+        "title": "meia de basquete",
+        "description": "Meia de basquete, alta e confortável",
+        "price": 37.99,
+        "thumbnail": "image3.jpg",
+        "code": 31,
+        "stock": 24,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 4,
+        "title": "camisa de futebol",
+        "description": "Camisa de futebol oficial, time A",
+        "price": 96.3,
+        "thumbnail": "image4.jpg",
+        "code": 42,
+        "stock": 7,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 5,
+        "title": "tênis de basquete",
+        "description": "Tênis de basquete com amortecimento avançado",
+        "price": 70.25,
+        "thumbnail": "image5.jpg",
+        "code": 61,
+        "stock": 42,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 6,
+        "title": "bermuda de futebol",
+        "description": "Bermuda de futebol em material sintético leve",
+        "price": 65.3,
+        "thumbnail": "image6.jpg",
+        "code": 32,
+        "stock": 55,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 7,
+        "title": "jaqueta de basquete",
+        "description": "Jaqueta de basquete estilo varsity, tamanho G",
+        "price": 35.66,
+        "thumbnail": "image7.jpg",
+        "code": 51,
+        "stock": 13,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 8,
+        "title": "bola de basquete",
+        "description": "Bola de basquete oficial, tamanho 7",
+        "price": 33.6,
+        "thumbnail": "image8.jpg",
+        "code": 22,
+        "stock": 21,
+        "status": true,
+        "category": "basquete"
+    },
+    {
+        "id": 9,
+        "title": "colete de futebol",
+        "description": "Colete de futebol para treinos, tamanho único",
+        "price": 60.5,
+        "thumbnail": "image9.jpg",
+        "code": 41,
+        "stock": 18,
+        "status": true,
+        "category": "futebol"
+    },
+    {
+        "id": 10,
+        "title": "luva de goleiro",
+        "description": "Luva de goleiro profissional, tamanho M",
+        "price": 45.87,
+        "thumbnail": "image10.jpg",
+        "code": 11,
+        "stock": 54,
+        "status": true,
+        "category": "futebol"
+    }
+]

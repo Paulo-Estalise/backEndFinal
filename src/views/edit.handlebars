@@ -1,0 +1,75 @@
+<div class="edit-product">
+    <h2>Editar Produto</h2>
+
+    <form id="form">
+        <label for="title">Nome do Produto:</label>
+        <input type="text" id="title" name="title" value="{{product.title}}">
+        <br>
+        <label for="category">Categoria:</label>
+        <select name="category">
+            <option>{{product.category}}</option>
+            <option value="chuteiras">Chuteiras</option>
+            <option value="tênis de basquete">Tênis de Basquete</option>
+            <option value="camisas de time">Camisas de Time</option>
+            <option value="bolas">Bolas</option>
+            <option value="equipamentos de proteção">Equipamentos de Proteção</option>
+            <option value="acessórios">Acessórios</option>
+        </select>
+        <br>
+        <label for="description">Descrição:</label>
+        <br>
+        <textarea for="text" id="description" name="description" required cols="30" rows="5">{{product.description}}</textarea>
+        <br>
+        <label for="price">Preço (R$):</label>
+        <input type="number" id="price" name="price" value="{{product.price}}" step="0.01" required>
+        <br>
+        <label for="code">Código:</label>
+        <input type="number" id="code" name="code" value="{{product.code}}" min="0" required>
+        <br>
+        <label for="thumbnail">Imagem:</label>
+        <input type="text" id="thumbnail" name="thumbnail" value="{{product.thumbnail}}" required>
+        <br>
+        <label for="stock">Estoque:</label>
+        <input type="number" id="stock" name="stock" value="{{product.stock}}" min="0" required>
+        <br>
+        <label for="status">Status:</label>
+        <select name="status">
+            <option>{{product.status}}</option>
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+        <br>
+        <button class="edit-button" data-id="{{product._id}}">Atualizar</button>
+    </form>
+</div>
+
+<script>
+    const editButtons = document.querySelectorAll('.edit-button')
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const productId = button.getAttribute('data-id')
+            await editaProduto(productId)
+            swal({
+                text: "Produto atualizado com sucesso",
+                icon: "success",
+            })
+            window.location.href = `/admin`
+        })
+    })
+
+    async function editaProduto(_id) {
+        try {
+            const form = new FormData(document.getElementById("form"))
+            const response = await fetch(`/products/${_id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(Object.fromEntries(form))
+            })
+        } catch (error) {
+            req.logger.error('Erro na solicitação de atualização:', error)
+        }
+    }
+</script>

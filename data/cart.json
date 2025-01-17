@@ -1,0 +1,45 @@
+[
+    {
+        "id": 0,
+        "products": [
+            {
+                "productId": 101,
+                "qty": 2
+            },
+            {
+                "productId": 105,
+                "qty": 2
+            },
+            {
+                "productId": 110,
+                "qty": 3
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "products": [
+            {
+                "productId": 101,
+                "qty": 3
+            },
+            {
+                "productId": 102,
+                "qty": 2
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "products": [
+            {
+                "productId": 103,
+                "qty": 3
+            },
+            {
+                "productId": 104,
+                "qty": 2
+            }
+        ]
+    }
+]
