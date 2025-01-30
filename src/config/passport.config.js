@@ -3,9 +3,8 @@ require('dotenv').config();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GitHubStrategy = require("passport-github2").Strategy;
-const User = require("../model/user.model"); // Ajuste o caminho conforme necessário
+const User = require("../model/user.model"); 
 
-// Estratégia local (email/senha)
 passport.use(
   new LocalStrategy(
     {
@@ -54,9 +53,9 @@ passport.use(
   )
 );
 
-// Serialização e desserialização do usuário
+
 passport.serializeUser((user, done) => {
-  done(null, user._id); // Usando _id, se for o campo padrão do MongoDB
+  done(null, user._id);
 });
 
 passport.deserializeUser(async (id, done) => {
@@ -68,5 +67,5 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// Exporta a função de inicialização do Passport
+
 module.exports = () => passport.initialize();
